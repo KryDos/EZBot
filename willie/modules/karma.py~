@@ -62,7 +62,7 @@ def negpoint(bot, trigger):
         	bot.say(".negpoint <nick> - Removes karma points to given nick.")
         	return
 	nick = Identifier(trigger.group(2).strip())
-	channel = str(Identifier(trigger.sender))
+	channel = str(Identifier(trigger.sender)[1:])
 	if (nick == Identifier(trigger.nick)):
 		bot.reply("You can't karma yourself, sorry!")
 		return

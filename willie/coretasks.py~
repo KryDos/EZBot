@@ -216,7 +216,7 @@ def track_nicks(bot, trigger):
     old = trigger.nick
     new = Identifier(trigger)
 
-    # Give debug message, and PM the owner, if the bot's own nick changes.
+    # Give debug mssage, and PM the owner, if the bot's own nick changes.
     if old == bot.nick:
         privmsg = ("Hi, I'm your bot, %s."
                    "Something has made my nick change. "
