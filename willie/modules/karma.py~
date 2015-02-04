@@ -111,7 +111,7 @@ def point(bot, trigger):
 			totalkarma = result[2]
 			bot.say('%s: +%d/-%d, %d' % (nick, poskarma, negkarma, totalkarma))
 		else:
-			bot.say('Sorry, no karma points found for %s. User not in database' % nick)
+			bot.say('Sorry, no karma points found for %s.' % nick)
 	conn.close()
 
 @commands('reset')
