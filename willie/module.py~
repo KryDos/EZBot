@@ -282,7 +282,7 @@ def require_authentication(function):
 	@functools.wraps(function)
 	def _auth(*args, **kwargs):
 		bot, trigger = args[0:2]
-		bot.msg('NICKSERV', ('STATUS ' + trigger.nick))
+		bot.msg('NICKSERV', (':STATUS ' + trigger.nick))
 		data = bot.recv(8096)
 		bot.reply(data)
 		if data.find("STATUS %s 3" % trigger.nick) != -1:

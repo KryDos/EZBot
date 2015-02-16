@@ -107,7 +107,7 @@ def retry_join(bot, trigger):
     time.sleep(6)
     bot.join(channel)
 
-#Functions to maintain a list of chanops in all of willie's channels.
+#Functions to maintain a list of chanops in all of ezbot's channels.
 
 
 @willie.module.rule('(.*)')

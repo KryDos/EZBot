@@ -23,7 +23,7 @@ except ImportError:
         # urlretrieve has been put under urllib.request in Python 3.
         # It's also deprecated so this should probably be replaced with
         # urllib2.
-        from urllib.request import urlretrieve
+     	from urllib.request import urlretrieve
     except ImportError:
         pass
 
@@ -112,29 +112,28 @@ def ip(bot, trigger):
     geolite_city_filepath = os.path.join(_find_geoip_db(bot), 'GeoLiteCity.dat')
     geolite_ASN_filepath = os.path.join(_find_geoip_db(bot), 'GeoIPASNum.dat')
     try:
-	gi_city = pygeoip.GeoIP(geolite_city_filepath)
+        gi_city = pygeoip.GeoIP(geolite_city_filepath)
     	gi_org = pygeoip.GeoIP(geolite_ASN_filepath)
     	host = socket.getfqdn(query)
     	response = "[IP/Host Lookup] Hostname: %s" % host
     	try:
         	response += " | Location: %s" % gi_city.country_name_by_name(query)
     	except AttributeError:
-        	response += ' | Location: Unknown'
-    except Exception:
-	bot.say('Something went wrong. IP information not determined.')
+            response += ' | Location: Unknown'
 
-    region_data = gi_city.region_by_name(query)
-    try:
-        region = region_data['region_code']  # pygeoip >= 0.3.0
-    except KeyError:
-        region = region_data['region_name']  # pygeoip < 0.3.0
-    if region:
-        response += " | Region: %s" % region
+        region_data = gi_city.region_by_name(query)
+    	try:
+        	region = region_data['region_code']  # pygeoip >= 0.3.0
+    	except KeyError:
+        	region = region_data['region_name']  # pygeoip < 0.3.0
+    	if region:
+        	response += " | Region: %s" % region
 
-    isp = gi_org.org_by_name(query)
-    response += " | ISP: %s" % isp
-    bot.say(response)
-
+    	isp = gi_org.org_by_name(query)
+    	response += " | ISP: %s" % isp
+    	bot.say(response)
+    except Exception as e:
+		bot.say('[!] Something went wrong: %s.' % e)
 
 if __name__ == "__main__":
     from willie.test_tools import run_example_tests

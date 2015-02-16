@@ -15,7 +15,7 @@ import willie.tools
 import threading
 import sys
 from willie.tools import Identifier, iterkeys
-from willie.module import commands, nickname_commands, rule, priority, example
+from willie.module import commands, nickname_commands, rule, priority, example, require_privmsg
 
 maximum = 4
 
@@ -81,7 +81,7 @@ def setup(self):
 
 @commands('tell', 'ask')
 @nickname_commands('tell', 'ask')
-@example('Willie, tell Embolalia he broke something again.')
+@example('EZBot, tell Factionwars he broke something again.')
 def f_remind(bot, trigger):
     """Give someone a message the next time they're seen"""
     teller = trigger.nick
@@ -131,6 +131,11 @@ def f_remind(bot, trigger):
     dumpReminders(bot.tell_filename, bot.memory['reminders'], bot.memory['tell_lock'])  # @@ tell
 
 
+@require_privmsg
+@commands('tellmsg')
+def pmsg_reminder(bot, trigger):
+	f_remind(bot, trigger)
+
 def getReminders(bot, channel, key, tellee):
     lines = []
     template = "%s: %s <%s> %s %s %s"
@@ -173,7 +178,10 @@ def message(bot, trigger):
             reminders.extend(getReminders(bot, channel, remkey, tellee))
 
     for line in reminders[:maximum]:
-        bot.say(line)
+	if 'tellmsg' in line:
+	    bot.msg(tellee, line)
+	else:
+	    bot.say(line)
 
     if reminders[maximum:]:
         bot.say('Further messages sent privately')

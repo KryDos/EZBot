@@ -7,7 +7,8 @@ Licensed under the Eiffel Forum License 2.
 http://willie.dftba.net
 """
 from __future__ import unicode_literals
-from willie import web, tools
+from willie import tools
+import requests
 from willie.module import NOLIMIT, commands, example, rule
 import json
 import re
@@ -46,7 +47,7 @@ def mw_search(server, query, num):
                   '&list=search&srlimit=%d&srprop=timestamp&srwhat=text'
                   '&srsearch=') % (server, num)
     search_url += query
-    query = json.loads(web.get(search_url))
+    query = json.loads(requests.get(search_url))
     if 'query' in query:
         query = query['query']['search']
         return [r['title'] for r in query]
@@ -73,7 +74,7 @@ def mw_snippet(server, query):
                    '&action=query&prop=extracts&exintro&explaintext'
                    '&exchars=300&redirects&titles=')
     snippet_url += query
-    snippet = json.loads(web.get(snippet_url))
+    snippet = json.loads(requests.get(snippet_url))
     snippet = snippet['query']['pages']
 
     # For some reason, the API gives the page *number* as the key, so we just

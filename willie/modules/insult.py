@@ -1,5 +1,5 @@
 """
-thanks.py
+insult.py - insult nick using the Elizabethian system
 Copyright 2015, http://evilzone.org
 
 Licensed under the Evilzone Forum License.
@@ -11,27 +11,18 @@ from willie.module import commands, example
 from willie.tools import Identifier
 
 @commands('insult')
-@example('.insult kenjoe41')
+@example('!insult kenjoe41')
 def insult(bot, trigger): 
-   if not trigger.group(2):
-      return bot.say(".insult <nick> - Insults the user.")
+	"""insult <nick> - insult nick using the Elizabethian system"""
+	if not trigger.group(2):
+		return bot.say("!insult <nick> - Insults the user.")
    
-   _insult = random.choice((
-     'Shut up',
-     'I hate you',
-     'Go away',
-     'Eat a boat',
-     'Leave me alone',
-     'Get bent',
-     'Screw you',
-     'Nopony loves you',
-     'Get out',
-     'Go swivel',
-     'I\'ve had my genitals on live television, I don\'t need your crap',
-     'You\'re not my real mom',
-     'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-   ))
-   insultednick = Identifier(trigger.group(2).strip())
-   bot.say(_insult +  ", " + insultednick + "!")
+  	raw = web.get('http://quandyfactory.com/insult/json')
+	insults = json.loads(raw)
+	if trigger.group(2):
+		insultednick = Identifier(trigger.group(2).strip())
+		bot.say( insultednick + ', ' + insults['insult'])
+	else:
+		bot.say(trigger.nick + ', ' + insults['insult'])
 if __name__ == '__main__': 
    print(__doc__.strip())

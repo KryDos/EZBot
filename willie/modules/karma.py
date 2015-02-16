@@ -24,10 +24,10 @@ def addpoint(bot, trigger):
 	if not trigger.group(2):
         	bot.reply(".addpoint <nick> - Adds karma points to given nick.")
         	return
-	nick = Identifier(trigger.group(2).strip())
+	nick = Identifier(trigger.group(2).strip().lower())
 	channel = string.lower(str(Identifier(trigger.sender)))
-	if (nick == Identifier(trigger.nick)):
-		bot.reply("You can't karma yourself, sorry!")
+	if (nick == Identifier(trigger.nick.lower())):
+		bot.reply("Gotcha, %s. You can't karma yourself, sorry!" % nick)
 		return
 	if nick not in bot.privileges[channel]:
 		bot.reply("Sorry, nick %s not in %s current users." % (nick, channel))
@@ -61,9 +61,9 @@ def negpoint(bot, trigger):
 	if not trigger.group(2):
         	bot.say(".negpoint <nick> - Removes karma points to given nick.")
         	return
-	nick = Identifier(trigger.group(2).strip())
+	nick = Identifier(trigger.group(2).strip().lower())
 	channel = string.lower(str(Identifier(trigger.sender)))
-	if (nick == Identifier(trigger.nick)):
+	if (nick == Identifier(trigger.nick.lower())):
 		bot.reply("You can't karma yourself, sorry!")
 		return
 	if nick not in bot.privileges[channel]:
@@ -99,7 +99,7 @@ def point(bot, trigger):
 	if not trigger.group(2):
         	bot.reply(".point <nick> - Show karma points of given nick.")
         	return
-	nick = Identifier(trigger.group(2).strip())
+	nick = Identifier(trigger.group(2).strip().lower())
 	conn = bot.db.connect()
 	c = conn.cursor()
 	with conn:
@@ -121,7 +121,7 @@ def reset(bot, trigger):
 	if not trigger.group(2) or not trigger.admin:
         	bot.reply(".reset <nick> - Reset karma points of given nick. Admin only command.")
         	return
-	nick = Identifier(trigger.group(2).strip())
+	nick = Identifier(trigger.group(2).strip().lower())
 	conn = bot.db.connect()
 	c = conn.cursor()
 	with conn:

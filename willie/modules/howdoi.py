@@ -1,10 +1,24 @@
 # -*- coding: utf8 -*-
 """
 howdoi.py  EZbot howdoi module
-Copyright (C) 2012 Benjamin Gleitzman (gleitz@mit.edu)
-Copyright 2015, http://evilzone.org
 
-Licensed under the Evilzone Forum License.
+Copyright (C) 2012 Benjamin Gleitzman (gleitz@mit.edu)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
+associated documentation files (the "Software"), to deal in the Software without restriction, including 
+without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the 
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions
+of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO 
+THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+IN THE SOFTWARE.
+
+Copyright 2015, http://evilzone.org
 EZbot: https://evilzone.org
 """
 import argparse
@@ -26,17 +40,11 @@ try:
 except ImportError:
     from urllib.request import getproxies
 
-from pygments import highlight
-from pygments.lexers import guess_lexer, get_lexer_by_name
-from pygments.formatters import TerminalFormatter
-from pygments.util import ClassNotFound
-
 from pyquery import PyQuery as pq
 from requests.exceptions import ConnectionError
 from requests.exceptions import SSLError
 
 __version__ = '1.1.7'
-
 
 from willie.module import commands, example
 
@@ -169,4 +177,5 @@ def get_instructions(query):
     answer = get_answer(links[1])
 
     return answer, links[1]
+
 

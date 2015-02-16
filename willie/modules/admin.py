@@ -24,7 +24,7 @@ def configure(config):
     config.add_option('admin', 'hold_ground', "Auto re-join on kick")
     config.add_option('admin', 'auto_accept_invites', "Auto Accept All Invites")
 
-
+@willie.module.require_authentication
 @willie.module.commands('join')
 @willie.module.priority('low')
 @willie.module.example('.join #example or .join #example key')
@@ -44,6 +44,7 @@ def join(bot, trigger):
             bot.join(channel, key)
 
 
+@willie.module.require_authentication
 @willie.module.commands('part')
 @willie.module.priority('low')
 @willie.module.example('.part #example')
@@ -62,6 +63,7 @@ def part(bot, trigger):
         bot.part(channel)
 
 
+@willie.module.require_authentication
 @willie.module.commands('quit')
 @willie.module.priority('low')
 def quit(bot, trigger):
@@ -79,6 +81,7 @@ def quit(bot, trigger):
     bot.quit(quit_message)
 
 
+@willie.module.require_authentication
 @willie.module.commands('msg')
 @willie.module.priority('low')
 @willie.module.example('.msg #YourPants Does anyone else smell neurotoxin?')
@@ -102,6 +105,7 @@ def msg(bot, trigger):
     bot.msg(channel, message)
 
 
+@willie.module.require_authentication
 @willie.module.commands('me')
 @willie.module.priority('low')
 def me(bot, trigger):
@@ -125,6 +129,7 @@ def me(bot, trigger):
     bot.msg(channel, msg)
 
 
+@willie.module.require_authentication
 @willie.module.event('INVITE')
 @willie.module.rule('.*')
 @willie.module.priority('low')
@@ -137,6 +142,7 @@ def invite_join(bot, trigger):
         return
 
 
+@willie.module.require_authentication
 @willie.module.event('KICK')
 @willie.module.rule(r'.*')
 @willie.module.priority('low')
@@ -154,6 +160,7 @@ def hold_ground(bot, trigger):
             bot.join(channel)
 
 
+@willie.module.require_authentication
 @willie.module.commands('mode')
 @willie.module.priority('low')
 def mode(bot, trigger):
@@ -166,6 +173,7 @@ def mode(bot, trigger):
     bot.write(('MODE ', bot.nick + ' ' + mode))
 
 
+@willie.module.require_authentication
 @willie.module.commands('set')
 @willie.module.example('.set core.owner Me')
 def set_config(bot, trigger):
@@ -214,6 +222,7 @@ def set_config(bot, trigger):
     setattr(getattr(bot.config, section), option, value)
 
 
+@willie.module.require_authentication
 @willie.module.commands('save')
 @willie.module.example('.save')
 def save_config(bot, trigger):
