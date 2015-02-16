@@ -284,7 +284,7 @@ def require_authentication(function):
 		bot, trigger = args[0:2]
 		bot.msg('NICKSERV', ('STATUS ' + trigger.nick))
 		data = bot.recv(8096)
-		bot.reply(data)
+		#bot.reply(data)
 		if data.find("STATUS %s 3" % trigger.nick) != -1:
 			return function(*args, **kwargs)
 		bot.reply('You are not identified with NickServ. Command requires that you are identified.')

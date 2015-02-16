@@ -1,7 +1,6 @@
 # -*- coding: utf8 -*-
 """
 howdoi.py  EZbot howdoi module
-
 Copyright (C) 2012 Benjamin Gleitzman (gleitz@mit.edu)
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
 associated documentation files (the "Software"), to deal in the Software without restriction, including 
@@ -40,11 +39,17 @@ try:
 except ImportError:
     from urllib.request import getproxies
 
+from pygments import highlight
+from pygments.lexers import guess_lexer, get_lexer_by_name
+from pygments.formatters import TerminalFormatter
+from pygments.util import ClassNotFound
+
 from pyquery import PyQuery as pq
 from requests.exceptions import ConnectionError
 from requests.exceptions import SSLError
 
 __version__ = '1.1.7'
+
 
 from willie.module import commands, example
 
