@@ -6,10 +6,9 @@ Licensed under the Evilzone Forum License.
 EZbot: https://evilzone.org
 """
 
-import random, json
+import random
 from willie.module import commands, example
 from willie.tools import Identifier
-from willie import web
 
 @commands('insult')
 @example('!insult kenjoe41')
