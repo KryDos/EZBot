@@ -24,10 +24,10 @@ def start(bot, trigger):
     don't guess the right wire fast enough.
     """
     if not trigger.group(2):
-        return
+        return bot.say('Moron, Jews don\'t commit suicide.')
 
     if trigger.sender.is_nick():
-        return
+        return bot.say('That is stupid. Suicide bombing when no one is around, fucking Bin laden wannabe!')
         
     if bot.privileges[trigger.sender][trigger.nick] < HALFOP:
         bot.say('Sorry, you need to be at least a halfop to request my saboteur services.')
@@ -47,7 +47,7 @@ def start(bot, trigger):
     if target in bombs:
         bot.say('I can\'t fit another bomb in ' + target + '\'s pants!')
         return
-    message = 'Hey, ' + target + '! Don\'t look but, I think there\'s a bomb in your pants. 60 second timer, 5 wires: Red, Yellow, Blue, White and Black. Which wire should I cut? Don\'t worry, I know what I\'m doing! (respond with .cutwire color)'
+    message = 'Hey, ' + target + '! Don\'t look but, I think there\'s a bomb in your pants. 60 second timer, 5 wires: Red, Yellow, Blue, White and Black. Which wire should I cut? Don\'t worry, I know what I\'m doing! (respond with !cutwire color)'
     bot.say(message)
     color = choice(colors)
     bot.msg(trigger.nick, 'Hey, don\'t tell %s, but the %s wire? Yeah, that\'s the one. But shh! Don\'t say anything!' % (target, color))
@@ -60,7 +60,7 @@ def start(bot, trigger):
 @unblockable
 def cutwire(bot, trigger):
     """
-    Tells willie to cut a wire when you've been bombed.
+    Tells EZBot to cut a wire when you've been bombed.
     """
     global bombs, colors
     target = trigger.nick

@@ -14,7 +14,8 @@ import random
 import re
 from random import randint, choice
 
-@module.rule(' ?\*?\/?shrug\*?')
+#@module.rule(' ?\*?\/?shrug\*?')
+@module.commands('shrug')
 def shrug(bot, trigger):
     bot.say(u'\u00AF\_(\u30C4)_/\u00AF')
 
@@ -87,17 +88,22 @@ def salute(bot, trigger):
     if trigger.group(2):
          bot.say('o7 o7 SALUTE '+trigger.group(2).upper() + ' o7 o7')
 
+@module.commands('flex')
+def flex(bot, trigger):
+    """
+    .flex [donger] - Flex 'em
+    """
+    if trigger.group(2):
+        bot.say(u'\u1559\u0F3C\u0E88\u0644\u035C\u0E88\u0F3D\u1557 FLEX YOUR {} \u1559\u0F3C\u0E88\u0644\u035C\u0E88\u0F3D\u1557'.format(trigger.group(2).strip().upper()))
+    else:
+         bot.say(u'\u1559\u0F3C\u0E88\u0644\u035C\u0E88\u0F3D\u1557 flex your dongers \u1559\u0F3C\u0E88\u0644\u035C\u0E88\u0F3D\u1557')
+
 @module.commands('rollover')
 def rollover(bot, trigger):
     """
     .rollover - Hey boy! Roll over! ... Good boy!
     """
     bot.say('(._.) (|:) (.-.) (:|) (._.)')
-
-@module.rule(u'.*(\(\u256F\u00B0\u25A1\u00B0\)\u256F\uFE35 \u253B\u2501\u253B|\(\u256F\u00B0\u25A1\u00B0\uFF09\u256F\uFE35 \u253B\u2501\u253B|\(\u30CE\u0CA0\u76CA\u0CA0\)\u30CE\u5F61\u253B\u2501\u253B|\u253B\u2501\u253B).*')
-def table_upright(bot, trigger):
-    uprights = [ u'\u252C\u2500\u252C \u30CE(^_^\u30CE)', u'\u252C\u2500\u252C\u30CE(\u00BA_\u00BA\u30CE)' ]
-    bot.say(random.choice(uprights))
 
 @module.commands('flip')
 def flip(bot, trigger):

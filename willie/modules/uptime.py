@@ -19,9 +19,9 @@ def setup(bot):
 
 @commands('uptime')
 def uptime(bot, trigger):
-    """.uptime - Returns the uptime of Willie."""
+    """.uptime - Returns the uptime of EZBot."""
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() -
                                               bot.memory["uptime"])
                                              .total_seconds()))
     bot.say("I've been sitting here for {} and I keep "
-            "going!".format(delta))
+            "going because kenjoe41 loves me!".format(delta))

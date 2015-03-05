@@ -50,7 +50,7 @@ google_search = duck_search
 
 
 def duck_api(query):
-    if '!bang' in query.lower():
+    if 'bang' in query.lower():
         return 'https://duckduckgo.com/bang.html'
 
     uri = 'http://api.duckduckgo.com/?q=%s&format=json&no_html=1&no_redirect=1' % query
@@ -113,20 +113,3 @@ def search(bot, trigger):
 
     except Exception:
 	bot.reply("Something went wrong. Search aborted")
-
-#@commands('suggest')
-#def suggest(bot, trigger):
-#    """Suggest terms starting with given input"""
-#    if not trigger.group(2):
-#        return bot.reply("No query term.")
-#    try:
-#        query = trigger.group(2)
-#        uri = 'http://websitedev.de/temp-bin/suggest.pl?q='
-#        answer = web.get(uri + query.replace('+', '%2B'))
-#    	if answer:
-#        	bot.say(answer)
-#    	else:
-#        	bot.reply('Sorry, no result.')
-#    except Exception:
-#	bot.reply("Something went wrong. Search aborted")
-

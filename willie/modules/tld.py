@@ -65,4 +65,4 @@ def gettld(bot, trigger):
             		reply = "No matches found for TLD: {0}".format(unicode(trigger.group(2)))
         		bot.reply(reply)
     except:
-	return
+	return bot.say('Now you broke it, moron. Just check out this url next time: %s' % uri)
