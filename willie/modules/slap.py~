@@ -257,6 +257,6 @@ def slap(willie, trigger):
 
     try:
         message = random.choice(slap)
-        willie.action(message.format(text[1]))
+        bot.action(message.format(text[1]))
     except:
-	willie.say('You broke it now. Hope you are happy, %s!' % trigger.nick)
+	bot.say('You broke it now. Hope you are happy, %s!' % trigger.nick)
