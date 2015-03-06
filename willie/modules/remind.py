@@ -154,16 +154,21 @@ def remind(bot, trigger):
 @commands('at')
 @example('.at 13:47 Do your homework!')
 def at(bot, trigger):
+    def wrong_input():
+        bot.reply("Sorry, but I didn't understand your input. That time input sucks. Try .help at")
     """
     Gives you a reminder at the given time. Takes hh:mm:ssTimezone
     message. Timezone is any timezone Willie takes elsewhere; the best choices
     are those from the tzdb; a list of valid options is available at
     http://dft.ba/-tz . The seconds and timezone are optional.
     """
+    if(trigger.group(2) == None):
+        wrong_input()
+        return NOLIMIT
     regex = re.compile(r'(\d+):(\d+)(?::(\d+))?([^\s\d]+)? (.*)')
     match = regex.match(trigger.group(2))
     if not match:
-        bot.reply("Sorry, but I didn't understand your input. That time input sucks. Try .help at")
+        wrong_input()
         return NOLIMIT
     hour, minute, second, tz, message = match.groups()
     if not second:
