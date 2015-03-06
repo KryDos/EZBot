@@ -110,6 +110,10 @@ def flip(bot, trigger):
     """
     .flip [text] - Flips text upside down
     """
+    if(trigger.group(2) == None):
+        bot.reply("You forgot the argument!")
+        return
+        
     bot.say(flip_text(trigger.group(2).strip()))
 
 #
