@@ -6,3 +6,4 @@ pygeoip
 praw
 feedparser
 pyenchant
+herp
