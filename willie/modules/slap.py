@@ -260,5 +260,4 @@ def slap(willie, trigger):
         if (trigger.nick not in willie.config.admins):
             text[1] = trigger.nick
 
-    bot.action(random.choice(slap).format(text[1])
-	
+    bot.action(random.choice(slap).format(text[1]))
