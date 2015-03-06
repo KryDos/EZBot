@@ -1,0 +1,21 @@
+build/
+doc/build/*
+logs/*
+tests
+willie.wiki/*
+*.db
+*.pyc
+*.pyo
+*.txt
+*~
+*.rpm
+*.spec
+.*.sw*
+.pid-*
+blocks
+osu_osc.py
+uno_test.py
+
+# IntelliJ idea
+.idea
+*.iml
